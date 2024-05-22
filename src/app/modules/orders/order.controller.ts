@@ -9,7 +9,7 @@ const createProducts = async (
 ) => {
   try {
     const orders = req.body;
-    const zodParsData = ordervalidationSchema.parse(orders)
+    const zodParsData = ordervalidationSchema.parse(orders);
     const result = await orderServices.createOrderinDb(zodParsData);
 
     res.status(200).send({

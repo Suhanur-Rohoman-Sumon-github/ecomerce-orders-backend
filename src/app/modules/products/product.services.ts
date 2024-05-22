@@ -26,14 +26,13 @@ const deleteProductsfromDb = (id: string) => {
   const result = ProductModel.deleteOne({ id });
   return result;
 };
-const updateProductsfromDb =  (id: string , payload: any) => {
-  console.log(payload,id);
-  const result =  ProductModel.findByIdAndUpdate(
-    id,
-    payload,
-    { new: true, runValidators: true } 
-);
-return result
+const updateProductsfromDb = (id: string, payload: any) => {
+  console.log(payload, id);
+  const result = ProductModel.findByIdAndUpdate(id, payload, {
+    new: true,
+    runValidators: true,
+  });
+  return result;
 };
 
 export const productServices = {
@@ -41,5 +40,5 @@ export const productServices = {
   getAllProductsfromDb,
   getSingleProductsfromDb,
   deleteProductsfromDb,
-  updateProductsfromDb
+  updateProductsfromDb,
 };

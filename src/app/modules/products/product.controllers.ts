@@ -1,7 +1,10 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import { NextFunction, Request, Response } from 'express';
 import { productServices } from './product.services';
-import { updateProductSchema, zodValidationSchema } from './products.validation';
+import {
+  updateProductSchema,
+  zodValidationSchema,
+} from './products.validation';
 const createProducts = async (
   req: Request,
   res: Response,
@@ -99,7 +102,7 @@ const updateProducts = async (
     const updateData = req.body;
     // eslint-disable-next-line no-unused-vars
     const zodParsData = updateProductSchema.parse(updateData);
-    const result = await productServices.updateProductsfromDb(id,zodParsData);
+    const result = await productServices.updateProductsfromDb(id, zodParsData);
 
     res.status(200).send({
       success: true,
@@ -116,5 +119,5 @@ export const productsControllers = {
   geAllProducts,
   getSingleProducts,
   deleteProducts,
-  updateProducts
+  updateProducts,
 };
