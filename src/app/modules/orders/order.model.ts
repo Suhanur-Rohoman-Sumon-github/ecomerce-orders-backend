@@ -27,7 +27,7 @@ orderSchema.pre('save', async function (next) {
         $set: { 'inventory.inStock': false },
       },
     );
-    return next(new Error("Insufficient quantity available in inventory"));
+    return next(new Error('Insufficient quantity available in inventory'));
   }
   // Update the product's inventory quantity
   await ProductModel.updateOne(

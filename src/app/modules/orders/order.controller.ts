@@ -1,5 +1,6 @@
 import { NextFunction, Request, Response } from 'express';
 import { orderServices } from './order.services';
+import { ordervalidationSchema } from './order.validation';
 
 const createProducts = async (
   req: Request,
@@ -8,8 +9,8 @@ const createProducts = async (
 ) => {
   try {
     const orders = req.body;
-
-    const result = await orderServices.createOrderinDb(orders);
+    const zodParsData = ordervalidationSchema.parse(orders)
+    const result = await orderServices.createOrderinDb(zodParsData);
 
     res.status(200).send({
       success: true,

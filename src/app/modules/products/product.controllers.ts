@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import { NextFunction, Request, Response } from 'express';
 import { productServices } from './product.services';
-import zodValidation, {cretezodProductSchema} from './products.validation'
+import { zodValidationSchema } from './products.validation';
 const createProducts = async (
   req: Request,
   res: Response,
@@ -10,7 +10,7 @@ const createProducts = async (
   try {
     const products = req.body;
 
-    const zodParsData = zodValidation.parse(products)
+    const zodParsData = zodValidationSchema.parse(products);
 
     const result = await productServices.createProductsinDb(zodParsData);
 
