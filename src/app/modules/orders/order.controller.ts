@@ -30,7 +30,7 @@ const geAllorders = async (req: Request, res: Response, next: NextFunction) => {
       const result = await orderServices.getAllOrdersfromDb(query);
       res.status(200).send({
         success: true,
-        message: 'Products fetched successfully!',
+        message: 'order fetched successfully!',
         data: result,
       });
     } else {
