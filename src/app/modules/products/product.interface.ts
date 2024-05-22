@@ -1,5 +1,5 @@
 type Inventory = {
-  quantity: string;
+  quantity: number;
   inStock: boolean;
 };
 type Variant = {
