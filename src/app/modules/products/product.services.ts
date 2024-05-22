@@ -27,7 +27,6 @@ const deleteProductsfromDb = (id: string) => {
   return result;
 };
 const updateProductsfromDb = (id: string, payload: any) => {
-  
   const result = ProductModel.findByIdAndUpdate(id, payload, {
     new: true,
     runValidators: true,

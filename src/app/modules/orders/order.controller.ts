@@ -11,14 +11,18 @@ const createProducts = async (
 ) => {
   try {
     const orders = req.body;
-    
+
     const product = await ProductModel.findById(new ObjectId(orders.productId));
-    if (product.inventory.quantity < orders.quantity) {
+    if (!product) {
+      return;
+    } else if (product.inventory.quantity < orders.quantity) {
       res.status(200).send({
-        "success": false,
-        "message": "Insufficient quantity available in inventory"
-    });
+        success: false,
+        message: 'Insufficient quantity available in inventory',
+      });
+      return;
     }
+
     const zodParsData = ordervalidationSchema.parse(orders);
     const result = await orderServices.createOrderinDb(zodParsData);
 
