@@ -1,6 +1,8 @@
 import { NextFunction, Request, Response } from 'express';
 import { orderServices } from './order.services';
 import { ordervalidationSchema } from './order.validation';
+import ProductModel from '../products/product.models';
+import { ObjectId } from 'mongodb';
 
 const createProducts = async (
   req: Request,
@@ -9,6 +11,14 @@ const createProducts = async (
 ) => {
   try {
     const orders = req.body;
+    
+    const product = await ProductModel.findById(new ObjectId(orders.productId));
+    if (product.inventory.quantity < orders.quantity) {
+      res.status(200).send({
+        "success": false,
+        "message": "Insufficient quantity available in inventory"
+    });
+    }
     const zodParsData = ordervalidationSchema.parse(orders);
     const result = await orderServices.createOrderinDb(zodParsData);
 

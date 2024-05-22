@@ -98,7 +98,7 @@ const updateProducts = async (
 ) => {
   try {
     const id = req.params.productId;
-    console.log(id);
+    
     const updateData = req.body;
     // eslint-disable-next-line no-unused-vars
     const zodParsData = updateProductSchema.parse(updateData);
