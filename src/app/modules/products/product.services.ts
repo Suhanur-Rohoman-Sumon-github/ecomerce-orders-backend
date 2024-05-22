@@ -5,7 +5,7 @@ const createProductsinDb = (payload: Tproducts) => {
   const result = ProductModel.create(payload);
   return result;
 };
-const getAllProductsfromDb = (payload:string | null) => {
+const getAllProductsfromDb = (payload: string | null) => {
 
   if(payload){
     const result = ProductModel.find({ name: { $regex: payload, $options: 'i'}});
