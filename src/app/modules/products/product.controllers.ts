@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import { NextFunction, Request, Response } from 'express';
 import { productServices } from './product.services';
-import { zodValidationSchema } from './products.validation';
+import { updateProductSchema, zodValidationSchema } from './products.validation';
 const createProducts = async (
   req: Request,
   res: Response,
@@ -88,10 +88,33 @@ const deleteProducts = async (
     next(error);
   }
 };
+const updateProducts = async (
+  req: Request,
+  res: Response,
+  next: NextFunction,
+) => {
+  try {
+    const id = req.params.productId;
+    console.log(id);
+    const updateData = req.body;
+    // eslint-disable-next-line no-unused-vars
+    const zodParsData = updateProductSchema.parse(updateData);
+    const result = await productServices.updateProductsfromDb(id,zodParsData);
+
+    res.status(200).send({
+      success: true,
+      message: 'Product updated successfully!',
+      data: result,
+    });
+  } catch (error) {
+    next(error);
+  }
+};
 
 export const productsControllers = {
   createProducts,
   geAllProducts,
   getSingleProducts,
   deleteProducts,
+  updateProducts
 };
