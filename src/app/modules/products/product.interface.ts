@@ -1,18 +1,17 @@
-type Inventory ={
-    quantity:string
-    inStock:boolean
-}
+type Inventory = {
+  quantity: string;
+  inStock: boolean;
+};
 type Variant = {
-    type: string; 
-    value: string; 
-  };
+  type: string;
+  value: string;
+};
 export type Tproducts = {
-name:string
-description:string
-price:number
-category:string
-tags:string[]
-variant:Variant[]
-inventory:Inventory
-
-}
+  name: string;
+  description: string;
+  price: number;
+  category: string;
+  tags: string[];
+  variants: Variant[];
+  inventory: Inventory;
+};
