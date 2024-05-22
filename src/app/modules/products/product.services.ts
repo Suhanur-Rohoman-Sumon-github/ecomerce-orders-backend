@@ -6,25 +6,23 @@ const createProductsinDb = (payload: Tproducts) => {
   return result;
 };
 const getAllProductsfromDb = (payload: string | null) => {
-
-  if(payload){
-    const result = ProductModel.find({ name: { $regex: payload, $options: 'i'}});
+  if (payload) {
+    const result = ProductModel.find({
+      name: { $regex: payload, $options: 'i' },
+    });
     return result;
-  }else{
+  } else {
     const result = ProductModel.find();
     return result;
   }
-  
 };
-const getSingleProductsfromDb = (id:string) => {
-  
-  const result = ProductModel.findOne({id});
+const getSingleProductsfromDb = (id: string) => {
+  const result = ProductModel.findOne({ id });
   return result;
 };
 
-const deleteProductsfromDb = (id:string) => {
-  
-  const result = ProductModel.deleteOne({id});
+const deleteProductsfromDb = (id: string) => {
+  const result = ProductModel.deleteOne({ id });
   return result;
 };
 
@@ -32,5 +30,5 @@ export const productServices = {
   createProductsinDb,
   getAllProductsfromDb,
   getSingleProductsfromDb,
-  deleteProductsfromDb
+  deleteProductsfromDb,
 };
